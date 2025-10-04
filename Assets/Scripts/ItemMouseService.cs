@@ -1,18 +1,22 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
-using Input = UnityEngine.Windows.Input;
 
 public class ItemMouseService: ITickable, IInitializable, IDisposable
 {
     public event Action OnHandCanceled;
-    
+    public event Action OnScroll;
+
     private GameUIController _gameUIController;
     private InputAction _mouseFollowAction;
     private InputAction _mouseRightClickAction;
+    private InputAction _mouseScrollAction;
 
     private bool _isHandEmpty = true;
+
+    public float CameraScrollInput { get; private set; }
     
     public ItemMouseService(
         GameUIController gameUIcontroller,
@@ -24,13 +28,15 @@ public class ItemMouseService: ITickable, IInitializable, IDisposable
         map.Enable();
         _mouseFollowAction = map.FindAction("MousePosition");
         _mouseRightClickAction = map.FindAction("RightClick");
+        _mouseScrollAction = map.FindAction("MouseScroll");
     }
 
     public void Initialize()
     {
         _mouseRightClickAction.performed += ctx => RightClick();
+        _mouseScrollAction.performed += ctx => ScrollHandler();
     }
-
+    
     public void Dispose()
     {
     }
@@ -45,11 +51,17 @@ public class ItemMouseService: ITickable, IInitializable, IDisposable
         var mousePos = _mouseFollowAction.ReadValue<Vector2>();
        
         _gameUIController.SetWorldPosition(mousePos);
+        
     }
 
-    public void GrabHand(InventoryItemData data)
+    public void Rotatehand(bool isClockwise)
     {
-        _gameUIController.ActivateHand(data);
+        _gameUIController.RotateHand(isClockwise);
+    }
+
+    public void GrabHand(InventoryItemData data, float duration, Ease ease)
+    {
+        _gameUIController.ActivateHand(data, duration, ease);
         _isHandEmpty = false;
     }
     
@@ -58,14 +70,23 @@ public class ItemMouseService: ITickable, IInitializable, IDisposable
         _isHandEmpty = true;
         _gameUIController.DeactivateHand();
     }
+    
+    public bool IsHandEmpty()
+    {
+        return _isHandEmpty;
+    }
 
     private void RightClick()
     {
         OnHandCanceled?.Invoke();
     }
-
-    public bool IsHandEmpty()
+    
+    private void ScrollHandler()
     {
-        return _isHandEmpty;
+        CameraScrollInput = _mouseScrollAction.ReadValue<Vector2>().y;
+        OnScroll?.Invoke();
     }
+
+
+  
 }

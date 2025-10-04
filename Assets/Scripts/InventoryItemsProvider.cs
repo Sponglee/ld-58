@@ -1,6 +1,5 @@
     using System;
     using System.Collections.Generic;
-    using UnityEngine;
     using Zenject;
 
     public class InventoryItemsProvider: IInitializable, IDisposable
@@ -39,18 +38,20 @@
 
             _artifactProvider.OnArtifactPickedUp += ArtifactPickedUp;
             _itemMouseService.OnHandCanceled += ArtifactDropped;
+            _itemMouseService.OnScroll += ScrollAction;
         }
 
         public void Dispose()
         {
             _artifactProvider.OnArtifactPickedUp -= ArtifactPickedUp;
             _itemMouseService.OnHandCanceled -= ArtifactDropped;
+            _itemMouseService.OnScroll -= ScrollAction;
         }
         
         private void ArtifactPickedUp(Artifact obj)
         {
             var inventoryData = _artifactManager.GetDataByArtifact(obj);
-            _itemMouseService.GrabHand(inventoryData);
+            _itemMouseService.GrabHand(inventoryData, _gamePreset.HandRotateDuration, _gamePreset.HandRotateEase);
             _artifactManager.DestroyArtifact(obj);
         }
 
@@ -59,6 +60,12 @@
             _itemMouseService.EmptyHand();
         }
 
+        private void ScrollAction()
+        {
+            var isClockwise = _itemMouseService.CameraScrollInput>=0;
+            _gameUIController.RotateHand(isClockwise);
+        }
+        
         private void InitializeInventorySlots()
         {
             var slots = new List<InventorySlotController>();
@@ -67,6 +74,7 @@
                 var slotModel = new InventorySlotModel();
                 var slotView = _viewFactory.Create(_gamePreset.InventorySlotPrefab, _gameUIController.GetInventoryParent());
                 var slot = new InventorySlotController(slotModel, slotView);
+                slot.Initialize();
                 slots.Add(slot);
             }
           

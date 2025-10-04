@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -10,6 +11,8 @@ public class GamePreset : ScriptableObject
 [Header("--------Inventory----------")]
     public int InventoryCapacity = 5;
     public GameObject InventorySlotPrefab;
+    public float HandRotateDuration = 1f;
+    public Ease HandRotateEase;
 
     [Header("--------ARTIFACTS----------")]
     public List<ArtifactPreset> ArtifactList;

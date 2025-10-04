@@ -25,7 +25,7 @@
         }
     }
 
-    public class InventorySlotController
+    public class InventorySlotController: IDisposable
     {
         private InventorySlotView _view;
         private InventorySlotModel _model;
@@ -40,7 +40,17 @@
 
         public void Initialize()
         {
-            // _view = view;
+            _view.OnSlotPressed += SlotCkickHandler;
+        }
+        
+        public void Dispose()
+        {
+            _view.OnSlotPressed -= SlotCkickHandler;
+        }
+
+        private void SlotCkickHandler()
+        {
+            
         }
     }
 

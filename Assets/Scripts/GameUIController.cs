@@ -1,5 +1,6 @@
 
 using System;
+using DG.Tweening;
 using UnityEngine;
 using Zenject;
 
@@ -53,9 +54,14 @@ public class GameUIController: IInitializable, IDisposable
         _view.SetHandPosition(localPoint);
     }
 
-    public void ActivateHand(InventoryItemData data)
+    public void RotateHand(bool isClockwise)
     {
-        _view.InitializeHand(data);
+        _view.RotateHand(isClockwise);
+    }
+
+    public void ActivateHand(InventoryItemData data, float duration, Ease ease)
+    {
+        _view.InitializeHand(data, duration, ease);
     }
 
     public void DeactivateHand()
