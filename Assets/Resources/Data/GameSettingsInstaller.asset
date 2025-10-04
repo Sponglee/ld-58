@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 209cf752d6914f9fab9bab571c3d5468, type: 3}
+  m_Name: GameSettingsInstaller
+  m_EditorClassIdentifier: Assembly-CSharp::GameSettingsInstaller
+  _cameraSettingsPreset: {fileID: 11400000, guid: 25b7408243d394f23a4cdf9e55c887ac, type: 2}
+  _audioSettings: {fileID: 11400000, guid: f1f91554415b54170acb6697fb578572, type: 2}
+  _gameSettings: {fileID: 11400000, guid: 6b89eb573a1ed40e7b2dfd0c709c0398, type: 2}
