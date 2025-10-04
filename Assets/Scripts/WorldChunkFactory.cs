@@ -1,8 +1,6 @@
 using UnityEngine;
 using Zenject;
 
-namespace DefaultNamespace
-{
     public class WorldChunkFactory : IChunkFactory
     {
         private readonly DiContainer _container;
@@ -19,4 +17,3 @@ namespace DefaultNamespace
             return tile;
         }
     }
-}

@@ -506,7 +506,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 20
+  field of view: 10
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -532,8 +532,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5071278, y: -0.000000002257499, z: 0.0000000013283203, w: 0.8618709}
-  m_LocalPosition: {x: 0, y: 45, z: -25}
+  m_LocalRotation: {x: 0.41476753, y: 0.000000028028953, z: -0.000000012776295, w: 0.9099274}
+  m_LocalPosition: {x: 5, y: 100, z: -86.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -725,7 +725,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -28.7, y: 0}
+  m_AnchoredPosition: {x: -28.699951, y: 0}
   m_SizeDelta: {x: 249.9466, y: 264.2725}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &339347981
@@ -2175,7 +2175,7 @@ MonoBehaviour:
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
-    FieldOfView: 20
+    FieldOfView: 10
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -2202,8 +2202,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 590340857}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.50712776, y: -0.000000006498515, z: 0.000000008535988, w: 0.8618709}
-  m_LocalPosition: {x: 0, y: 45, z: -25}
+  m_LocalRotation: {x: 0.41476753, y: 0.000000028028953, z: -0.000000012776294, w: 0.9099274}
+  m_LocalPosition: {x: 5, y: 100, z: -86.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2227,7 +2227,7 @@ MonoBehaviour:
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
-  FollowOffset: {x: 0, y: 45, z: -25}
+  FollowOffset: {x: 5, y: 100, z: -86.9}
 --- !u!114 &590340862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2250,7 +2250,7 @@ MonoBehaviour:
       Size: {x: 0.8, y: 0.8}
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
-  TargetOffset: {x: 0, y: 0, z: 0}
+  TargetOffset: {x: 5, y: 0, z: 0}
   Damping: {x: 0.5, y: 0.5}
   Lookahead:
     Enabled: 0
@@ -2800,6 +2800,7 @@ GameObject:
   - component: {fileID: 1006904687}
   - component: {fileID: 1006904688}
   - component: {fileID: 1006904689}
+  - component: {fileID: 1006904690}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -2840,6 +2841,7 @@ MonoBehaviour:
   - {fileID: 1006904687}
   - {fileID: 1006904688}
   - {fileID: 1006904689}
+  - {fileID: 1006904690}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -2901,6 +2903,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DefaultNamespace.Installers.WorldInstaller
   _worldHolder: {fileID: 998656587}
   _worldPreset: {fileID: 11400000, guid: 318a8c13621324b4a840b7f8c73915b9, type: 2}
+--- !u!114 &1006904690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006904684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 941d959a8061434bbd2fc552eb8c2812, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InputSystemInstaller
+  _inputAsset: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  _runner: {fileID: 1825605696}
 --- !u!1 &1032557611
 GameObject:
   m_ObjectHideFlags: 0
@@ -2936,11 +2952,11 @@ RectTransform:
   - {fileID: 301451345}
   m_Father: {fileID: 1948586690}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 806.7177, y: 15.494}
-  m_SizeDelta: {x: 787.435, y: 1099}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -50, y: 0}
+  m_SizeDelta: {x: 787.43506, y: 1099}
+  m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1032557613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4820,6 +4836,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1795968634}
   m_CullTransparentMesh: 1
+--- !u!114 &1825605696 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2609161949936903379, guid: fe1eb5355e59a40d9bee45453e6cd52e, type: 3}
+  m_PrefabInstance: {fileID: 1764844287498617105}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbdd386191b948a78f82eb4b2fa0cf42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player
 --- !u!1 &1876524648
 GameObject:
   m_ObjectHideFlags: 0
@@ -5369,7 +5396,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6196863184028080248, guid: fe1eb5355e59a40d9bee45453e6cd52e, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: Runner
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -1,8 +1,6 @@
 using UnityEngine;
 using Zenject;
 
-namespace DefaultNamespace.Installers
-{
     public class WorldInstaller : MonoInstaller
     {
         [SerializeField] private Transform _worldHolder;
@@ -13,15 +11,20 @@ namespace DefaultNamespace.Installers
             Container.BindInstance(_worldHolder).WithId("WorldSpawn");
             
             Container.BindInterfacesAndSelfTo<WorldGenerator>().AsSingle().NonLazy();
+            
             Container.Bind<ChunkManager>().AsSingle().NonLazy();
-
+            Container.BindInterfacesAndSelfTo<ChunkProvider>().AsSingle().NonLazy();
             Container.Bind<IChunkFactory>()
                 .To<WorldChunkFactory>()
-                .AsSingle();
+                .AsCached();
+            
+            Container.Bind<ArtifactManager>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<ArtifactProvider>().AsSingle().NonLazy();
+            Container.Bind<IArtifactFactory>()
+                .To<ArtifactFactory>()
+                .AsCached();
+           
             
             Container.Bind<WorldPreset>().FromInstance(_worldPreset).AsCached();
-
-            Container.BindInterfacesAndSelfTo<ChunkProvider>().AsSingle().NonLazy();
         }
     }
-}

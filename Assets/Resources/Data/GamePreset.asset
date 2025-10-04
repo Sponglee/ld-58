@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: GamePreset
   m_EditorClassIdentifier: Assembly-CSharp::GamePreset
   LevelMoveSpeed: 10
+  RunnerMoveSpeed: 100

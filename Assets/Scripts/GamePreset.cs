@@ -6,4 +6,6 @@ using UnityEngine;
 public class GamePreset : ScriptableObject
 {
     public float LevelMoveSpeed = 10f;
+    public float RunnerMoveSpeed = 10f;
+
 }

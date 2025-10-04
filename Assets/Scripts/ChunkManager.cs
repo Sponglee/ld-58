@@ -1,9 +1,14 @@
+using System;
 using System.Collections.Generic;
 using Mono.Cecil;
 using UnityEngine;
 
-public class ChunkManager
+public class ChunkManager : IDisposable
 {
+    public delegate void ChunkCallback(WorldChunk chunk);
+
+    private ChunkCallback _chunkCallback;
+    
     private LinkedList<WorldChunk> _activeChunks = new LinkedList<WorldChunk>();
 
     public ChunkManager()
@@ -11,9 +16,19 @@ public class ChunkManager
         
     }
     
+    public void Dispose()
+    {
+        _chunkCallback = null;
+    }
+
+    public void SetTileInitializedCallback(ChunkCallback callback)
+    {
+        _chunkCallback = callback;
+    }
     public void AddTile(WorldChunk chunk)
     {
         _activeChunks.AddLast(chunk);
+        _chunkCallback?.Invoke(chunk);
     }
 
     public void MoveChunks(float moveSpeed, WorldPreset preset)
@@ -30,7 +45,7 @@ public class ChunkManager
                 chunk.Transform.position.y,
                 pos
             );
-    
+
             AddTile(chunk);
         }
         
@@ -38,5 +53,7 @@ public class ChunkManager
             chunk.Move(moveSpeed * Time.deltaTime);
         }
         
-    } 
+    }
+
+  
 }
