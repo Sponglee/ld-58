@@ -52,7 +52,7 @@ public class WorldGenerator : IInitializable
 
     private Vector3 GetSpawnPosition(int tileY, float tileSize)
     {
-        var position = new Vector3(0f,0f, tileY * tileSize/2f);
+        var position = new Vector3(0f,0f, tileY * tileSize);
 
         return position;
     }

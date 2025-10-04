@@ -17,6 +17,19 @@ public class MainMenuProvider: IInitializable, IDisposable
         _mainMenuController.ToggleUI(true);
         
         _gameStateService.OnGameStateChanged += StateChangeHandler;
+        _mainMenuController.OnGameStartInput += StartGame;
+    }
+    
+    public void Dispose()
+    {
+        _gameStateService.OnGameStateChanged -= StateChangeHandler;
+        _mainMenuController.OnGameStartInput -= StartGame;
+
+    }
+
+    private void StartGame()
+    {
+        _gameStateService.ChangeState(GameState.Play);
     }
 
     private void StateChangeHandler(GameState gameState)
@@ -25,8 +38,5 @@ public class MainMenuProvider: IInitializable, IDisposable
         _mainMenuController.ToggleUI(toggleState);
     }
 
-    public void Dispose()
-    {
-        _gameStateService.OnGameStateChanged -= StateChangeHandler;
-    }
+
 }

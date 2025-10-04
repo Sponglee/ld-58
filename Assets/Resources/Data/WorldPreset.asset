@@ -16,3 +16,5 @@ MonoBehaviour:
   TileList:
   - {fileID: 1954414342721818455, guid: 2d94176f1b0604837b6961c9ffa088ba, type: 3}
   MapSize: 5
+  JumpTreshold: -40
+  JumpValue: 40

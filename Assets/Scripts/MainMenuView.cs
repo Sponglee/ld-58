@@ -1,23 +1,24 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class MainMenuView : UIViewBase
 {
    public event Action OnStartButtonPressed;
    
-   [SerializeField] private Button playButton;
-   [SerializeField] private Button creditsButton;
+   [SerializeField] private Button _playButton;
+   [SerializeField] private Button _creditsButton;
 
 
    private void Start()
    {
-      playButton.onClick.AddListener(StartPressed);
+      _playButton.onClick.AddListener(StartPressed);
    }
 
    private void OnDestroy()
    {
-      playButton.onClick.RemoveListener(StartPressed);
+      _playButton.onClick.RemoveListener(StartPressed);
    }
 
    private void StartPressed()
