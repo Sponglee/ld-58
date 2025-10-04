@@ -7,17 +7,17 @@ public class RunnerProvider: IInitializable, IDisposable, ITickable
     private GamePreset _gamePreset;
     private GameStateService _gameStateService;
     private RunnerInputService _runnerInputService;
-    private Runner _runner;
+    private RunnerView _runnerView;
     
     public RunnerProvider(
         RunnerInputService runnerInputService, 
         GameStateService gameStateService,
-        Runner runner,
+        RunnerView runnerView,
         GamePreset gamePreset)
     {
         _gameStateService = gameStateService;
         _runnerInputService = runnerInputService;
-        _runner = runner;
+        _runnerView = runnerView;
         _gamePreset = gamePreset;
     }
 
@@ -38,7 +38,7 @@ public class RunnerProvider: IInitializable, IDisposable, ITickable
     {
         var input = _runnerInputService.RunnerMoveInput;   
         var moveVector = new Vector3(input.x, 0f,0f) * _gamePreset.RunnerMoveSpeed * Time.deltaTime;
-        _runner.MoveRunner(moveVector);
+        _runnerView.MoveRunner(moveVector);
     }
 
     public void Tick()

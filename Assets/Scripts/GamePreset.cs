@@ -1,14 +1,13 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "GamePreset", menuName = "Scriptable Objects/GamePreset")]
 public class GamePreset : ScriptableObject
 {
     public float LevelMoveSpeed = 10f;
     public float RunnerMoveSpeed = 10f;
-[Header("--------Inventory----------")]
+    [Header("--------Inventory----------")]
     public int InventoryCapacity = 5;
     public GameObject InventorySlotPrefab;
     public float HandRotateDuration = 1f;
@@ -16,5 +15,5 @@ public class GamePreset : ScriptableObject
 
     [Header("--------ARTIFACTS----------")]
     public List<ArtifactPreset> ArtifactList;
-    
+    public float ArtifactPickupSpeed = 0.5f;
 }

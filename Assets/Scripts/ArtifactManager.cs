@@ -8,6 +8,8 @@ public class ArtifactManager: IDisposable
     
     private Dictionary<Artifact, InventoryItemData> _activeArtifacts = new Dictionary<Artifact, InventoryItemData>();
 
+    private Artifact _pickedUpArtifact;
+    
     public void AddArtifact(InventoryItemData itemData, Artifact artifact)
     {
         _activeArtifacts.Add(artifact, itemData);
@@ -42,5 +44,25 @@ public class ArtifactManager: IDisposable
         {
             GameObject.Destroy(artifact.gameObject);
         }
+    }
+
+    public void DropArtifact()
+    {
+        if (_pickedUpArtifact == null)
+        {
+            return;
+        }
+         
+        DestroyArtifact(_pickedUpArtifact);
+    }
+
+    public void SetPickedUpArtifact(Artifact artifact)
+    {
+        if (_pickedUpArtifact != null)
+        {
+            DestroyArtifact(_pickedUpArtifact);
+        }
+
+        _pickedUpArtifact = artifact;
     }
 }

@@ -52,7 +52,6 @@
         {
             var inventoryData = _artifactManager.GetDataByArtifact(obj);
             _itemMouseService.GrabHand(inventoryData, _gamePreset.HandRotateDuration, _gamePreset.HandRotateEase);
-            _artifactManager.DestroyArtifact(obj);
         }
 
         private void ArtifactDropped()
