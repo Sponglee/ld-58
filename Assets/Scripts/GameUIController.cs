@@ -1,5 +1,6 @@
 
 using System;
+using UnityEngine;
 using Zenject;
 
 public class GameUIController: IInitializable, IDisposable
@@ -33,5 +34,33 @@ public class GameUIController: IInitializable, IDisposable
     private void PausePressed()
     {
         OnPauseButtonPressed?.Invoke();
+    }
+
+    public Transform GetInventoryParent()
+    {
+        return _view.GetInventoryParent();
+    }
+
+    public void SetWorldPosition(Vector2 mousePos)
+    {
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            _view.GetRectTransform(), 
+            mousePos,
+            null,
+            out Vector2 localPoint
+        );
+        
+        _view.SetHandPosition(localPoint);
+    }
+
+    public void ActivateHand(InventoryItemData data)
+    {
+        _view.InitializeHand(data);
+    }
+
+    public void DeactivateHand()
+    {
+        _view.DeinitializeHand();
+        // _view.SetHandPosition(_view.GetRectTransform().position);
     }
 }

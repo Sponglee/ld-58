@@ -7,6 +7,7 @@ public class WorldGenerator : IInitializable
     private IArtifactFactory _artifactFactory;
 
     private WorldPreset _worldPreset;
+    private GamePreset _gamePreset;
     private Transform _worldHolder;
     private ChunkManager _chunkManager;
     private ArtifactManager _artifactManager;
@@ -16,6 +17,7 @@ public class WorldGenerator : IInitializable
         IChunkFactory chunkFactory, 
         IArtifactFactory artifactFactory,
         WorldPreset worldPreset, 
+        GamePreset gamePreset,
         ChunkManager chunkManager,
         ArtifactManager artifactManager,
         [Inject(Id = "WorldSpawn")] Transform worldHolder)
@@ -23,6 +25,7 @@ public class WorldGenerator : IInitializable
         _chunkFactory = chunkFactory;
         _artifactFactory = artifactFactory;
         _worldPreset = worldPreset;
+        _gamePreset = gamePreset;
         _worldHolder = worldHolder;
         _chunkManager = chunkManager;
         _artifactManager = artifactManager;
@@ -36,19 +39,20 @@ public class WorldGenerator : IInitializable
 
     public void GenerateObjects(WorldChunk chunk)
     {
-        var hasArtifacts = Random.Range(0, 100) <= _worldPreset.ArtifactSpawnPrbability;
+        var hasArtifacts = Random.Range(0, 100) <= _worldPreset.ArtifactSpawnProbability;
         if (!hasArtifacts)
         {
             return;
         }
 
-        TryGetArtifactPrefab(out var artifactPrefab);
+        TryGetArtifactPrefab(out var artifactPrefab, out var inventoryItemData);
         
         var spawnPoint = chunk.GetRandomSpawnPoint();
         var chunkObjectHolder = chunk.ObjectHolder;
+        
         var artifact = _artifactFactory.Create(artifactPrefab, spawnPoint.position);
         artifact.GetTransform().SetParent(chunkObjectHolder);
-        _artifactManager.AddArtifact(artifact);
+        _artifactManager.AddArtifact(inventoryItemData, artifact);
     }
     
     public void GenerateLevel()
@@ -87,12 +91,15 @@ public class WorldGenerator : IInitializable
         return tilePrefab != null;
     }
 
-    private bool TryGetArtifactPrefab(out GameObject artifactPrefab)
+    private bool TryGetArtifactPrefab(out GameObject artifactPrefab, out InventoryItemData data)
     {
         artifactPrefab = null;
-        var artifactList = _worldPreset.ArtifactList;
+        data = null;
+        var artifactList = _gamePreset.ArtifactList;
+        var preset =artifactList[Random.Range(0, artifactList.Count)];
 
-        artifactPrefab = artifactList[Random.Range(0, artifactList.Length)];
+        artifactPrefab = preset.artifactPrefab;
+        data = preset.inventoryData;
         
         return artifactPrefab == null;
     }

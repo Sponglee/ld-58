@@ -20,5 +20,15 @@ public class GameSystemsInstaller : MonoInstaller
         Container.Bind<MainMenuModel>().AsSingle().NonLazy();
         Container.Bind<MainMenuView>().FromInstance(_uiViews[1] as MainMenuView);
         Container.BindInterfacesAndSelfTo<MainMenuController>().AsSingle().NonLazy();
+        
+        
+        Container.BindInterfacesAndSelfTo<InventoryService>().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<InventoryItemsProvider>().AsSingle().NonLazy();
+        Container.Bind<InventorySlotViewFactory>().AsCached();
+        
+        
+        Container.BindInterfacesAndSelfTo<ItemMouseService>().AsSingle().NonLazy();
+
+
     }
 }

@@ -16,7 +16,5 @@ MonoBehaviour:
   TileList:
   - {fileID: 1954414342721818455, guid: 2d94176f1b0604837b6961c9ffa088ba, type: 3}
   MapSize: 5
-  ArtifactList:
-  - {fileID: 3156149740539133086, guid: 1a6755e532ade4b8ca43b64c1b5182d9, type: 3}
-  ArtifactSpawnPrbability: 100
+  ArtifactSpawnProbability: 100
   JumpTreshold: -40

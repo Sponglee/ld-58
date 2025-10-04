@@ -17,7 +17,6 @@ public class Artifact : MonoBehaviour, IArtifact
         if (((1 << other.gameObject.layer) & _interactionMask) != 0)
         {
             OnArtifactPickedUp?.Invoke(this);
-            Destroy(gameObject);
         }
     }
 }
