@@ -10,6 +10,8 @@ public class ArtifactManager: IDisposable
 
     private Artifact _pickedUpArtifact;
     
+    public Artifact PickedUpArtifact => _pickedUpArtifact;
+    
     public void AddArtifact(InventoryItemData itemData, Artifact artifact)
     {
         _activeArtifacts.Add(artifact, itemData);

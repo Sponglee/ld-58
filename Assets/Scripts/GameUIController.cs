@@ -67,6 +67,5 @@ public class GameUIController: IInitializable, IDisposable
     public void DeactivateHand()
     {
         _view.DeinitializeHand();
-        // _view.SetHandPosition(_view.GetRectTransform().position);
     }
 }

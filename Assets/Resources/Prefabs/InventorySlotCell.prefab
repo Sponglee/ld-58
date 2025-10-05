@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0170b7d99071454eab09f3287685d6a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlotView
-  _icon: {fileID: 0}
+  _icon: {fileID: 7610097826360315014}
   _cellButton: {fileID: 773068683650063699}
 --- !u!114 &773068683650063699
 MonoBehaviour:

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DG.Tweening;
+using Unity.Burst.Intrinsics;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "GamePreset", menuName = "Scriptable Objects/GamePreset")]
@@ -16,4 +17,5 @@ public class GamePreset : ScriptableObject
     [Header("--------ARTIFACTS----------")]
     public List<ArtifactPreset> ArtifactList;
     public float ArtifactPickupSpeed = 0.5f;
+    public Vector2 InventoryDimentions;
 }

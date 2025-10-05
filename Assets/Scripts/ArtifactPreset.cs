@@ -5,6 +5,5 @@ using UnityEngine;
 public class ArtifactPreset
 {
     public InventoryItemData inventoryData;
-
     public GameObject artifactPrefab;
 }

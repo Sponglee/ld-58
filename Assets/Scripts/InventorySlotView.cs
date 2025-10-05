@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class InventorySlotView : MonoBehaviour
 {
-    public event Action OnSlotPressed;
+    public event Action OnSlotButtonPressed;
     
     [SerializeField] private Image _icon;
 
@@ -28,6 +28,6 @@ public class InventorySlotView : MonoBehaviour
     
     private void OnButtonClicked()
     {
-        OnSlotPressed?.Invoke();
+        OnSlotButtonPressed?.Invoke();
     }
 }

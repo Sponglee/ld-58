@@ -5,11 +5,14 @@ public class HandView : MonoBehaviour
 {
     [SerializeField] private RectTransform _rectTransform;
 
+    public HandCell[] handCells; 
+        
     private Ease _rotationEase;
     private float _rotationDuration;
     
     private void Awake()
     {
+        SetData(null);
         gameObject.SetActive(false);
     }
 
@@ -30,7 +33,28 @@ public class HandView : MonoBehaviour
 
     public void SetData(InventoryItemData data)
     {
-        
+        if (data == null)
+        {
+            for (int i = 0; i < handCells.Length; i++)
+            {
+                handCells[i].ToggleCell(false);
+            }
+            return;
+        }
+    
+        var lines = data.shape.Split('\n');
+        int index = 0;
+    
+        for (var y = 0; y < lines.Length; y++)
+        {
+            var line = lines[y].Trim();
+            for (var x = 0; x < line.Length; x++)
+            {
+                var toggle = line[x] == '1';
+                handCells[index].ToggleCell(toggle);
+                index++;
+            }
+        }
     }
 
     public void RotateAround(bool isClockwise)

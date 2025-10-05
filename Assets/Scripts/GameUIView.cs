@@ -11,7 +11,8 @@ public class GameUIView : UIViewBase
    [SerializeField] private HandView _handView;
    [SerializeField] private Button _pauseButton;
    [SerializeField] private Transform _inventoryHolder;
-
+   [SerializeField] private Transform _artifactHolder;
+   
    private void Start()
    {
       _pauseButton.onClick.AddListener(PausePressed);

@@ -17,7 +17,7 @@ public class ItemMouseService: ITickable, IInitializable, IDisposable
     private bool _isHandEmpty = true;
 
     public float CameraScrollInput { get; private set; }
-    
+
     public ItemMouseService(
         GameUIController gameUIcontroller,
         InputActionAsset inputActionAsset)
