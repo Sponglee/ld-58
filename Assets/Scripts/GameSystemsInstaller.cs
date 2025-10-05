@@ -12,6 +12,8 @@ public class GameSystemsInstaller : MonoInstaller
 
         Container.BindInterfacesTo<GameUIProvider>().AsSingle();
         Container.BindInterfacesTo<MainMenuProvider>().AsSingle();
+        Container.BindInterfacesTo<ShopUIProvider>().AsSingle();
+        Container.BindInterfacesTo<MoneyProvider>().AsSingle();
 
         Container.Bind<GameUIModel>().AsSingle().NonLazy();
         Container.Bind<GameUIView>().FromInstance(_uiViews[0] as GameUIView);
@@ -21,7 +23,10 @@ public class GameSystemsInstaller : MonoInstaller
         Container.Bind<MainMenuView>().FromInstance(_uiViews[1] as MainMenuView);
         Container.BindInterfacesAndSelfTo<MainMenuController>().AsSingle().NonLazy();
         
-        
+        Container.Bind<ShopView>().FromInstance(_uiViews[2] as ShopView);
+
+        Container.Bind<MoneyView>().FromInstance(_uiViews[3] as MoneyView);
+
         Container.BindInterfacesAndSelfTo<InventoryService>().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<InventoryItemsProvider>().AsSingle().NonLazy();
         Container.Bind<InventorySlotViewFactory>().AsCached();
@@ -36,5 +41,8 @@ public class GameSystemsInstaller : MonoInstaller
         // Container.Bind<MoneyModel>().AsSingle();
         Container.BindInterfacesAndSelfTo<MoneyManager>().AsSingle();
         // Container.BindInterfacesAndSelfTo<MoneyController>().AsSingle();
+        
+        Container.BindInterfacesAndSelfTo<UpgradesManager>().AsSingle();
+
     }
 }

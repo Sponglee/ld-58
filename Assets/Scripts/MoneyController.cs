@@ -16,6 +16,11 @@
             _moneyView.UpdateMoneyText(_moneyModel.PlayerMoney.ToString());
         }
         
+        public void ToggleUI(bool toggleState)
+        {
+            _moneyView.gameObject.SetActive(toggleState);
+        }
+        
         public void AddMoney(int addMoney)
         {
             var moneyAmount = _moneyModel.PlayerMoney;

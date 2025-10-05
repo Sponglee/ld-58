@@ -1,16 +1,14 @@
 using System;
-using DefaultNamespace;
-using DG.Tweening;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class GameUIView : UIViewBase
 {
+   public event Action OnDayCompleteButtonPressed;
    public event Action OnPauseButtonPressed;
    [SerializeField] private RectTransform _rectTransform;
    [SerializeField] private Button _pauseButton;
+   [SerializeField] private Button _endDayButton;
    [SerializeField] private Transform _inventoryHolder;
    [SerializeField] private Transform _artifactHolder;
    [SerializeField] private Transform _handHolder;
@@ -19,16 +17,23 @@ public class GameUIView : UIViewBase
    private void Start()
    {
       _pauseButton.onClick.AddListener(PausePressed);
+      _endDayButton.onClick.AddListener(DayCompletePressed);
    }
 
    private void OnDestroy()
    {
       _pauseButton.onClick.RemoveListener(PausePressed);
+      _endDayButton.onClick.RemoveListener(DayCompletePressed);
    }
    
    private void PausePressed()
    {
       OnPauseButtonPressed?.Invoke();
+   }
+   
+   private void DayCompletePressed()
+   {
+      OnDayCompleteButtonPressed?.Invoke();
    }
 
    public Transform GetInventoryParent()

@@ -37,6 +37,7 @@ public enum GameState
     Pause,
     Play,
     Win,
-    Lose
+    Lose,
+    Shop
 }
 

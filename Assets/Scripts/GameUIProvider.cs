@@ -17,14 +17,15 @@ public class GameUIProvider: IInitializable, IDisposable
         _gameUIController.ToggleUI(false);
 
         _gameStateService.OnGameStateChanged += StateChangeHandler;
-        _gameUIController.OnPauseButtonPressed += PauseGame;
-
+        _gameUIController.OnPauseButton += PauseGame;
+        _gameUIController.OnEndDayButton += DayComplete;
     }
 
     public void Dispose()
     {
         _gameStateService.OnGameStateChanged -= StateChangeHandler;
-        _gameUIController.OnPauseButtonPressed += PauseGame;
+        _gameUIController.OnPauseButton += PauseGame;
+        _gameUIController.OnEndDayButton -= DayComplete;
     }
     
     private void StateChangeHandler(GameState gameState)
@@ -36,5 +37,10 @@ public class GameUIProvider: IInitializable, IDisposable
     private void PauseGame()
     {
         _gameStateService.ChangeState(GameState.Pause);
+    }
+    
+    private void DayComplete()
+    {
+        _gameStateService.ChangeState(GameState.Shop);
     }
 }

@@ -6,8 +6,9 @@ using Zenject;
 
 public class GameUIController: IInitializable, IDisposable
 {
-    public event Action OnPauseButtonPressed;
-    
+    public event Action OnPauseButton;
+    public event Action OnEndDayButton;
+
     private GameUIView _view;
     private GameUIModel _model;
     
@@ -20,11 +21,13 @@ public class GameUIController: IInitializable, IDisposable
     public void Initialize()
     {
         _view.OnPauseButtonPressed += PausePressed;
+        _view.OnDayCompleteButtonPressed += OnDayCompletePressed;
     }
 
     public void Dispose()
     {
-        _view.OnPauseButtonPressed -= PausePressed;
+        _view.OnDayCompleteButtonPressed -= PausePressed;
+        _view.OnDayCompleteButtonPressed -= OnDayCompletePressed;
     }
     
     public Transform GetInventoryParent()
@@ -56,9 +59,12 @@ public class GameUIController: IInitializable, IDisposable
 
     private void PausePressed()
     {
-        OnPauseButtonPressed?.Invoke();
+        OnPauseButton?.Invoke();
     }
-
+    private void OnDayCompletePressed()
+    {
+        OnEndDayButton?.Invoke();
+    }
    
    
 }
