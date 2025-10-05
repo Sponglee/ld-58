@@ -35,7 +35,7 @@ MonoBehaviour:
 
         000'
       MoneyValue: 10
-      inventoryIcon: {fileID: 21300000, guid: 066f9794a86ae488a803fe7d2e44843b, type: 3}
+      inventoryIcon: {fileID: 21300000, guid: 8170a4bc81f594fdaa513be7097a4028, type: 3}
     artifactPrefab: {fileID: 3156149740539133086, guid: 1a6755e532ade4b8ca43b64c1b5182d9, type: 3}
   - inventoryData:
       type: 2
@@ -45,16 +45,16 @@ MonoBehaviour:
 
         010'
       MoneyValue: 25
-      inventoryIcon: {fileID: 21300000, guid: f7c5f45b9c0eb46aeb6d96d4a2621c3c, type: 3}
+      inventoryIcon: {fileID: 21300000, guid: 3f176102087374d96ad1d56b9f47c63c, type: 3}
     artifactPrefab: {fileID: 2809357968001399673, guid: ac45ca934296d4dddad9cafa2e5c1d1c, type: 3}
   - inventoryData:
       type: 1
       shape: '000
 
-        111
+        001
 
-        010'
+        011'
       MoneyValue: 30
-      inventoryIcon: {fileID: 21300000, guid: a4c16b25e0f9a409abe2d77e88ef9656, type: 3}
+      inventoryIcon: {fileID: 21300000, guid: d4afc965dde034358a4ea82ad4ac33b2, type: 3}
     artifactPrefab: {fileID: 1570040935687510679, guid: 38177203054da4334b35b826c8068934, type: 3}
   ArtifactPickupSpeed: 0.5
