@@ -55,6 +55,11 @@ public class HandView : MonoBehaviour
                 index++;
             }
         }
+
+        foreach (var cell in handCells)
+        {
+            cell.SetImage(data.inventoryIcon);
+        }
     }
 
     public void RotateAround(bool isClockwise)

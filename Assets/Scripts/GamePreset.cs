@@ -13,6 +13,7 @@ public class GamePreset : ScriptableObject
     public GameObject InventorySlotPrefab;
     public float HandRotateDuration = 1f;
     public Ease HandRotateEase;
+    public GameObject HandPrefab;
 
     [Header("--------ARTIFACTS----------")]
     public List<ArtifactPreset> ArtifactList;

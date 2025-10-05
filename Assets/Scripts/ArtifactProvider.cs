@@ -1,6 +1,7 @@
 using System;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.XR;
 using Zenject;
 
 public class ArtifactProvider : IInitializable, ITickable, IDisposable
@@ -12,6 +13,7 @@ public class ArtifactProvider : IInitializable, ITickable, IDisposable
     private GameUIController _gameUIController;
     private ArtifactManager _artifactManager;
     private ItemMouseService _itemMouseService;
+    private HandService _handService;
     private RunnerView _runner;
     
     public ArtifactProvider(
@@ -20,6 +22,7 @@ public class ArtifactProvider : IInitializable, ITickable, IDisposable
         GameStateService gameStateService,
         ArtifactManager artifactManager,
         ItemMouseService itemMouseService,
+        HandService handService,
         RunnerView runnerView)
     {
         _gamePreset = gamePreset;
@@ -28,19 +31,20 @@ public class ArtifactProvider : IInitializable, ITickable, IDisposable
         _artifactManager = artifactManager;
         _itemMouseService = itemMouseService;
         _runner = runnerView;
+        _handService = handService;
     }
 
     public void Initialize()
     {
         _artifactManager.OnArtifactTriggered += ArtifactTriggered;
-        _itemMouseService.OnHandCanceled += ArtifactDrop;
+        _handService.OnHandDropped += ArtifactDrop;
         _gameStateService.OnGameStateChanged += GameStateHandler;
     }
 
     public void Dispose()
     {
         _artifactManager.OnArtifactTriggered -= ArtifactTriggered;
-        _itemMouseService.OnHandCanceled -= ArtifactDrop;
+        _handService.OnHandDropped -= ArtifactDrop;
         _gameStateService.OnGameStateChanged -= GameStateHandler;
     }
 
@@ -61,7 +65,7 @@ public class ArtifactProvider : IInitializable, ITickable, IDisposable
             return;
         }
 
-        if (!_itemMouseService.IsHandEmpty())
+        if (!_handService.IsHandEmpty)
         {
             return;
         }

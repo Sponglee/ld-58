@@ -29,6 +29,8 @@ public class GameSystemsInstaller : MonoInstaller
         
         Container.BindInterfacesAndSelfTo<ItemMouseService>().AsSingle().NonLazy();
 
-
+  
+        Container.BindInterfacesAndSelfTo<HandService>().AsSingle().NonLazy();
+        Container.Bind<HandFactory>().AsSingle();
     }
 }

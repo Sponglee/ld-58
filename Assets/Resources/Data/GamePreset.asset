@@ -17,7 +17,8 @@ MonoBehaviour:
   InventoryCapacity: 25
   InventorySlotPrefab: {fileID: 3028420687765336440, guid: 8d39c690ef32642acbd694bb43f44df4, type: 3}
   HandRotateDuration: 0.3
-  HandRotateEase: 0
+  HandRotateEase: 9
+  HandPrefab: {fileID: 3376822889091712634, guid: 956e73cd311d041bf81e200a3c815306, type: 3}
   ArtifactList:
   - inventoryData:
       type: 0

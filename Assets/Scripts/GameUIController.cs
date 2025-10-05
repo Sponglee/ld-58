@@ -27,6 +27,28 @@ public class GameUIController: IInitializable, IDisposable
         _view.OnPauseButtonPressed -= PausePressed;
     }
     
+    public Transform GetInventoryParent()
+    {
+        return _view.GetInventoryParent();
+    }
+    
+    public Transform GetHandParent()
+    {
+        return _view.GetHandParent();
+    }
+    
+    public Vector2 GetScreenPosition(Vector2 mousePos)
+    {
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            _view.GetRectTransform(), 
+            mousePos,
+            null,
+            out Vector2 localPoint
+        );
+
+        return localPoint;
+    }
+    
     public void ToggleUI(bool toggleState)
     {
         _view.gameObject.SetActive(toggleState);
@@ -37,35 +59,6 @@ public class GameUIController: IInitializable, IDisposable
         OnPauseButtonPressed?.Invoke();
     }
 
-    public Transform GetInventoryParent()
-    {
-        return _view.GetInventoryParent();
-    }
-
-    public void SetWorldPosition(Vector2 mousePos)
-    {
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            _view.GetRectTransform(), 
-            mousePos,
-            null,
-            out Vector2 localPoint
-        );
-        
-        _view.SetHandPosition(localPoint);
-    }
-
-    public void RotateHand(bool isClockwise)
-    {
-        _view.RotateHand(isClockwise);
-    }
-
-    public void ActivateHand(InventoryItemData data, float duration, Ease ease)
-    {
-        _view.InitializeHand(data, duration, ease);
-    }
-
-    public void DeactivateHand()
-    {
-        _view.DeinitializeHand();
-    }
+   
+   
 }

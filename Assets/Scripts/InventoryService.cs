@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Unity.Burst.Intrinsics;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class InventoryService
 {
@@ -27,15 +28,21 @@ public class InventoryService
         var shape = handData.shape;
         var slotCoord = slot.GetSlotCoords();
 
-        var line = shape.Split("\n");
-        var lineLength = line.Length;
-
-        for (var y = 0; y < line.Length; y++)
+        var lines = shape.Split("\n");
+        var lineLength = lines.Length;
+        var shapeSlotCount = 0;
+        for (var y = 0; y < lines.Length; y++)
         {
             for (var x = 0; x < lineLength; x++)
             {
                 var checkCoord = new Vector2(x + slotCoord.x - 1, y + slotCoord.y - 1);
-                var isHandShape = line[y][x] == '1';
+                var isHandShape = lines[y][x] == '1';
+                
+                if (isHandShape)
+                {
+                    shapeSlotCount++;
+                }
+                
                 var targetSlot = GetSlotByCoord(checkCoord);
                 if (targetSlot == null )
                 {
@@ -54,6 +61,12 @@ public class InventoryService
             }
         }
 
+        if (affectedSlots.Count < shapeSlotCount)
+        {
+            affectedSlots.Clear();
+            return false;
+        }
+        
         return true;
     }
 
@@ -99,6 +112,8 @@ public class InventorySlotController : IDisposable
 
     private InventorySlotView _view;
     private InventorySlotModel _model;
+    private Transform _t;
+    public Transform Transform => _t ??= _view.gameObject.transform;
 
     public InventorySlotController(
         InventorySlotModel model,
@@ -107,6 +122,8 @@ public class InventorySlotController : IDisposable
         _view = view;
         _model = model;
     }
+
+
 
     public void Initialize()
     {
@@ -130,6 +147,7 @@ public class InventorySlotController : IDisposable
 
     public void FillSlot(InventoryItemData data)
     {
+        _model.SetEmpty(false);
         _view.SetImage(data.inventoryIcon);
     }
 
@@ -153,6 +171,11 @@ public class InventorySlotModel
 
     public Vector2 Coords => _coords;
     public bool IsEmpty => _isEmpty;
+    
+    public void SetEmpty(bool toggle)
+    {
+        _isEmpty = toggle;
+    }
 }
 
 [Serializable]

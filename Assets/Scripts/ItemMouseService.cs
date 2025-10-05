@@ -1,5 +1,6 @@
 using System;
 using DG.Tweening;
+using Unity.Burst.Intrinsics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
@@ -14,10 +15,8 @@ public class ItemMouseService: ITickable, IInitializable, IDisposable
     private InputAction _mouseRightClickAction;
     private InputAction _mouseScrollAction;
 
-    private bool _isHandEmpty = true;
-
     public float CameraScrollInput { get; private set; }
-
+    public Vector2 MousePosition { get; private set; }
     public ItemMouseService(
         GameUIController gameUIcontroller,
         InputActionAsset inputActionAsset)
@@ -43,39 +42,12 @@ public class ItemMouseService: ITickable, IInitializable, IDisposable
     
     public void Tick()
     {
-        if (_isHandEmpty)
-        {
-            return;
-        } 
-        
         var mousePos = _mouseFollowAction.ReadValue<Vector2>();
-       
-        _gameUIController.SetWorldPosition(mousePos);
-        
-    }
 
-    public void Rotatehand(bool isClockwise)
-    {
-        _gameUIController.RotateHand(isClockwise);
-    }
-
-    public void GrabHand(InventoryItemData data, float duration, Ease ease)
-    {
-        _gameUIController.ActivateHand(data, duration, ease);
-        _isHandEmpty = false;
+        MousePosition = _gameUIController.GetScreenPosition(mousePos);
+      
     }
     
-    public void EmptyHand()
-    {
-        _isHandEmpty = true;
-        _gameUIController.DeactivateHand();
-    }
-    
-    public bool IsHandEmpty()
-    {
-        return _isHandEmpty;
-    }
-
     private void RightClick()
     {
         OnHandCanceled?.Invoke();

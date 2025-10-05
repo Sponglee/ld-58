@@ -8,10 +8,11 @@ public class GameUIView : UIViewBase
 {
    public event Action OnPauseButtonPressed;
    [SerializeField] private RectTransform _rectTransform;
-   [SerializeField] private HandView _handView;
    [SerializeField] private Button _pauseButton;
    [SerializeField] private Transform _inventoryHolder;
    [SerializeField] private Transform _artifactHolder;
+   [SerializeField] private Transform _handHolder;
+   [SerializeField] private Transform pointerHolder;
    
    private void Start()
    {
@@ -32,31 +33,19 @@ public class GameUIView : UIViewBase
    {
       return _inventoryHolder;
    }
+   
+   public Transform GetArtifactParent()
+   {
+      return _artifactHolder;
+   }
 
+   public Transform GetHandParent()
+   {
+      return _handHolder;
+   }
+   
    public RectTransform GetRectTransform()
    {
       return _rectTransform;
-   }
-
-   public void InitializeHand(InventoryItemData data, float rotationDuration, Ease ease)
-   {
-      _handView.SetData(data);
-      _handView.SetSettings(rotationDuration, ease);
-      _handView.ToggleHand(true);
-   }
-   public void SetHandPosition(Vector3 position)
-   {
-      _handView.SetPosition(position);
-   }
-
-   public void RotateHand(bool isClockwise)
-   {
-      _handView.RotateAround(isClockwise);
-   }
-
-   public void DeinitializeHand()
-   {
-      _handView.SetData(null);
-      _handView.ToggleHand(false);
    }
 }

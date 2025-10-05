@@ -1,6 +1,6 @@
     using System;
     using System.Collections.Generic;
-    using System.Numerics;
+    using UnityEditor;
     using UnityEngine;
     using Zenject;
 
@@ -12,7 +12,7 @@
         private ArtifactProvider _artifactProvider;
         private ArtifactManager _artifactManager;
         private ItemMouseService _itemMouseService;
-        // private HandService _handService;
+        private HandService _handService;
         private GamePreset _gamePreset;
 
         
@@ -23,7 +23,7 @@
             ArtifactProvider artifactProvider,
             ArtifactManager artifactManager,
             ItemMouseService itemMouseService,
-            // HandService handService,
+            HandService handService,
             GamePreset gamePreset)
         {
             _viewFactory = inventorySlotViewFactory;
@@ -33,8 +33,9 @@
             _artifactProvider = artifactProvider;
             _artifactManager = artifactManager;
             _itemMouseService = itemMouseService;
-            // _handService = handService;
+            _handService = handService;
         }
+
 
 
         public void Initialize()
@@ -48,11 +49,17 @@
 
         private void CellClicked(InventorySlotController obj)
         {
+            if (_handService.IsHandEmpty)
+            {
+                return;
+            }
+            
             var artifact = _artifactManager.PickedUpArtifact;
             var slotsToFill = new List<InventorySlotController>();
             var artifactData = _artifactManager.GetDataByArtifact(artifact);
             var canFit = _inventoryService.CheckSlot(obj, artifactData, out slotsToFill);
-
+            var hand = _handService.ActiveHand;
+            
             if (canFit)
             {
                 foreach (var slot in slotsToFill)
@@ -60,8 +67,8 @@
                     slot.FillSlot(artifactData);
                 }
                 
-                HandEmptied();
-                StoreArtifact(obj, artifact);
+                _handService.StoreHand(hand, obj);
+                _handService.DiscardHand();
             }
         }
 
@@ -73,26 +80,26 @@
             _itemMouseService.OnScroll -= ScrollAction;
         }
         
-        private void StoreArtifact(InventorySlotController inventorySlotController, Artifact obj)
+        private void StoreArtifact(HandController hand, Artifact obj)
         {
-
+            
         }
         
         private void ArtifactPickedUp(Artifact obj)
         {
             var inventoryData = _artifactManager.GetDataByArtifact(obj);
-            _itemMouseService.GrabHand(inventoryData, _gamePreset.HandRotateDuration, _gamePreset.HandRotateEase);
+            _handService.GrabOrCreateHand(inventoryData);
         }
 
         private void HandEmptied()
         {
-            _itemMouseService.EmptyHand();
+            _handService.DiscardHand();
         }
 
         private void ScrollAction()
         {
             var isClockwise = _itemMouseService.CameraScrollInput>=0;
-            _gameUIController.RotateHand(isClockwise);
+            _handService.RotateActiveHand(isClockwise);
         }
         
         private void InitializeInventorySlots()
@@ -107,7 +114,6 @@
             for (var i = 0; i < _gamePreset.InventoryCapacity; i++)
             {
                 var slotModel = new InventorySlotModel(new UnityEngine.Vector2(x,y), true);
-                Debug.Log(x +" : " +y);
                 var slotView = _viewFactory.Create(_gamePreset.InventorySlotPrefab, _gameUIController.GetInventoryParent());
                 var slot = new InventorySlotController(slotModel, slotView);
                 slot.Initialize();
