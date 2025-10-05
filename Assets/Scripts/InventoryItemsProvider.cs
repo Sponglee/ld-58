@@ -57,7 +57,8 @@
             var artifact = _artifactManager.PickedUpArtifact;
             var slotsToFill = new List<InventorySlotController>();
             var artifactData = _artifactManager.GetDataByArtifact(artifact);
-            var canFit = _inventoryService.CheckSlot(obj, artifactData, out slotsToFill);
+            var shapeString = CalculateHandRotatedShape(artifactData);
+            var canFit = _inventoryService.CheckSlot(obj, artifactData, shapeString, out slotsToFill);
             var hand = _handService.ActiveHand;
             
             if (canFit)
@@ -127,6 +128,38 @@
             }
           
             _inventoryService.SetUpSlots(slots);
+        }
+        
+        private string CalculateHandRotatedShape(InventoryItemData artifactData)
+        {
+           var handRotation= _handService.ActiveHand.GetRotationAngle();
+            var shapeToRotate = artifactData.shape;
+            var resultShape = shapeToRotate;
+            var turnCount = handRotation / 90;
+            
+            switch (handRotation)
+            {
+                case < 0:
+                {
+                    for (var i = 0; i < turnCount; i++)
+                    {
+                        resultShape = artifactData.RotateShape(resultShape);
+                    }
+
+                    break;
+                }
+                case > 0:
+                {
+                    for (var i = 0; i < turnCount; i++)
+                    {
+                        resultShape = artifactData.RotateShapeCounterClockwise(resultShape);
+                    }
+
+                    break;
+                }
+            }
+
+            return resultShape;
         }
 
     }

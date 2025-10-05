@@ -57,4 +57,9 @@ public class HandController : IDisposable
             GameObject.Destroy(_handView.gameObject);
             _handModel.Dispose();
         }
+
+        public float GetRotationAngle()
+        {
+          return _handView.gameObject.transform.eulerAngles.z;
+        }
     }

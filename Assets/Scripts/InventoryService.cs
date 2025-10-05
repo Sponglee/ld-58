@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Unity.Burst.Intrinsics;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class InventoryService
 {
@@ -21,11 +20,10 @@ public class InventoryService
         var item = new InventoryItem(data);
     }
 
-    public bool CheckSlot(InventorySlotController slot, InventoryItemData handData,
+    public bool CheckSlot(InventorySlotController slot, InventoryItemData handData, string shape,
         out List<InventorySlotController> affectedSlots)
     {
         affectedSlots = new List<InventorySlotController>();
-        var shape = handData.shape;
         var slotCoord = slot.GetSlotCoords();
 
         var lines = shape.Split("\n");
@@ -185,6 +183,35 @@ public class InventoryItemData
     [TextArea(3, 3)] public string shape;
     public float ScoreValue;
     public Sprite inventoryIcon;
+    
+    public string RotateShape(string shape)
+    {
+        var rows = shape.Trim().Split('\n').Select(r => r.ToCharArray()).ToArray();
+    
+        var rotated = Enumerable.Range(0, rows[0].Length)
+            .Select(col => new string(
+                Enumerable.Range(0, rows.Length)
+                    .Select(row => rows[rows.Length - 1 - row][col])
+                    .ToArray()
+            ));
+    
+        return string.Join("\n", rotated);
+    }
+    
+    public string RotateShapeCounterClockwise(string shape)
+    {
+        var rows = shape.Trim().Split('\n').Select(r => r.ToCharArray()).ToArray();
+    
+        var rotated = Enumerable.Range(0, rows[0].Length)
+            .Reverse()  // Read columns in reverse order
+            .Select(col => new string(
+                Enumerable.Range(0, rows.Length)
+                    .Select(row => rows[row][col])  // Read top to bottom
+                    .ToArray()
+            ));
+    
+        return string.Join("\n", rotated);
+    }
 }
 
 public class InventoryItem

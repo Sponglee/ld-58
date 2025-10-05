@@ -22,11 +22,11 @@ MonoBehaviour:
   ArtifactList:
   - inventoryData:
       type: 0
-      shape: '111
+      shape: '000
 
-        100
+        010
 
-        100'
+        000'
       ScoreValue: 1
       inventoryIcon: {fileID: 21300000, guid: 066f9794a86ae488a803fe7d2e44843b, type: 3}
     artifactPrefab: {fileID: 3156149740539133086, guid: 1a6755e532ade4b8ca43b64c1b5182d9, type: 3}
