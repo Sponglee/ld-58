@@ -28,9 +28,9 @@
             _moneyController.AddMoney(amount);
         }
 
-        public void SpendMoney(int amount)
+        public bool SpendMoney(int amount)
         {
-            _moneyController.TrySpendMoney(amount);
+            return _moneyController.TrySpendMoney(amount);
         }
         
       

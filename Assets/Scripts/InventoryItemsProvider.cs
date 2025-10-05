@@ -11,6 +11,7 @@
         private GameUIController _gameUIController;
         private ArtifactProvider _artifactProvider;
         private ArtifactManager _artifactManager;
+        private UpgradesManager _upgradesManager;
         private ItemMouseService _itemMouseService;
         private HandService _handService;
         private GamePreset _gamePreset;
@@ -22,6 +23,7 @@
             GameUIController gameUIController,
             ArtifactProvider artifactProvider,
             ArtifactManager artifactManager,
+            UpgradesManager upgradesManager,
             ItemMouseService itemMouseService,
             HandService handService,
             GamePreset gamePreset)
@@ -30,6 +32,7 @@
             _inventoryService = inventoryService;
             _gameUIController = gameUIController;
             _gamePreset = gamePreset;
+            _upgradesManager = upgradesManager;
             _artifactProvider = artifactProvider;
             _artifactManager = artifactManager;
             _itemMouseService = itemMouseService;
@@ -107,27 +110,34 @@
         private void InitializeInventorySlots()
         {
             var slots = new List<InventorySlotController>();
+            var gridLayout = _gameUIController.GetGridLayout();
+            var upgradeLevel = _upgradesManager.GetUpgradeDataByType(UpgradeType.Capacity).UpgradeLevel;
             
-            var columns = _gamePreset.InventoryDimentions.x;
-            var rows = _gamePreset.InventoryDimentions.y;
+            var columns = _gamePreset.InventoryDimentions[Mathf.Clamp(upgradeLevel, 0, _gamePreset.InventoryDimentions.Length-1)].x;
+            var rows = _gamePreset.InventoryDimentions[Mathf.Clamp(upgradeLevel, 0, _gamePreset.InventoryDimentions.Length-1)].y;
+            gridLayout.constraintCount = columns;
             var x = 0;
             var y = 0;
-            
-            for (var i = 0; i < _gamePreset.InventoryCapacity; i++)
+
+            for (var i = 0; i < columns; i++)
             {
-                var slotModel = new InventorySlotModel(new UnityEngine.Vector2(x,y), true);
-                var slotView = _viewFactory.Create(_gamePreset.InventorySlotPrefab, _gameUIController.GetInventoryParent());
-                var slot = new InventorySlotController(slotModel, slotView);
-                slot.Initialize();
-                slots.Add(slot);
-                x++;
-                if (x >= columns)
+                for (var j = 0; j < rows; j++)
                 {
-                    x = 0;
-                    y++;
+                    var slotModel = new InventorySlotModel(new UnityEngine.Vector2(x, y), true);
+                    var slotView = _viewFactory.Create(_gamePreset.InventorySlotPrefab,
+                        _gameUIController.GetInventoryParent());
+                    var slot = new InventorySlotController(slotModel, slotView);
+                    slot.Initialize();
+                    slots.Add(slot);
+                    x++;
+                    if (x >= columns)
+                    {
+                        x = 0;
+                        y++;
+                    }
                 }
             }
-          
+
             _inventoryService.SetUpSlots(slots);
         }
         

@@ -9,14 +9,15 @@ public class GamePreset : ScriptableObject
     public float LevelMoveSpeed = 10f;
     public float RunnerMoveSpeed = 10f;
     [Header("--------Inventory----------")]
+    public Vector2Int[] InventoryDimentions;
     public int InventoryCapacity = 5;
     public GameObject InventorySlotPrefab;
     public float HandRotateDuration = 1f;
     public Ease HandRotateEase;
     public GameObject HandPrefab;
+    public GameObject CollectionItemPrefab;
 
     [Header("--------ARTIFACTS----------")]
     public List<ArtifactPreset> ArtifactList;
     public float ArtifactPickupSpeed = 0.5f;
-    public Vector2 InventoryDimentions;
 }

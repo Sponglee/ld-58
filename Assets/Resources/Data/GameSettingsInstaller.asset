@@ -15,3 +15,4 @@ MonoBehaviour:
   _cameraSettingsPreset: {fileID: 11400000, guid: 25b7408243d394f23a4cdf9e55c887ac, type: 2}
   _audioSettings: {fileID: 11400000, guid: f1f91554415b54170acb6697fb578572, type: 2}
   _gameSettings: {fileID: 11400000, guid: 6b89eb573a1ed40e7b2dfd0c709c0398, type: 2}
+  _upgradeSettings: {fileID: 11400000, guid: 3a13cca37d26d4da3ad651957bce67ae, type: 2}

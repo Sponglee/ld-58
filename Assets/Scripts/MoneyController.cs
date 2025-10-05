@@ -34,7 +34,7 @@
         {
             var moneyAmount = _moneyModel.PlayerMoney - removeMoney;
 
-            if (removeMoney < 0)
+            if (moneyAmount < 0)
             {
                 return false;
             }

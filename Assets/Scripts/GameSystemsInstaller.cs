@@ -43,6 +43,13 @@ public class GameSystemsInstaller : MonoInstaller
         // Container.BindInterfacesAndSelfTo<MoneyController>().AsSingle();
         
         Container.BindInterfacesAndSelfTo<UpgradesManager>().AsSingle();
+        
+        Container.Bind<CollectionItemFactory>().AsCached();
+        Container.BindInterfacesAndSelfTo<CollectionProvider>().AsSingle();
+        Container.Bind<CollectionModel>().AsSingle().NonLazy();
+        Container.Bind<CollectionView>().FromInstance(_uiViews[4] as CollectionView);
+        Container.BindInterfacesAndSelfTo<CollectionController>().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<CollectionService>().AsSingle().NonLazy();
 
     }
 }

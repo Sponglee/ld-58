@@ -13,6 +13,7 @@ public class GameUIView : UIViewBase
    [SerializeField] private Transform _artifactHolder;
    [SerializeField] private Transform _handHolder;
    [SerializeField] private Transform pointerHolder;
+   [SerializeField] private GridLayoutGroup _gridLayoutGroup;
    
    private void Start()
    {
@@ -39,6 +40,11 @@ public class GameUIView : UIViewBase
    public Transform GetInventoryParent()
    {
       return _inventoryHolder;
+   }
+   
+   public GridLayoutGroup GetGridLayout()
+   {
+      return _gridLayoutGroup;
    }
    
    public Transform GetArtifactParent()

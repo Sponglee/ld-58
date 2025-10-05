@@ -16,10 +16,10 @@ public class MainMenuProvider: IInitializable, IDisposable
 
     public void Initialize()
     {
-        _mainMenuController.ToggleUI(true);
-        
         _gameStateService.OnGameStateChanged += StateChangeHandler;
         _mainMenuController.OnGameStartInput += StartGame;
+        
+        StateChangeHandler(_gameStateService.GameState);
 
     }
     
@@ -36,16 +36,27 @@ public class MainMenuProvider: IInitializable, IDisposable
         _gameStateService.ChangeState(GameState.Play);
     }
 
+    private void ExitGame()
+    {
+        
+    }
+
     private void StateChangeHandler(GameState gameState)
     {
-        var skipMenu = PlayerPrefs.GetInt("SkipMenu",0)==1;
+        if (gameState == GameState.Start)
+        { 
+            var skipMenu = PlayerPrefs.GetInt("SkipMenu",0)==1;
 
-        if (skipMenu)
-        {
-            StartGame();
+            if (skipMenu)
+            {
+                PlayerPrefs.SetInt("SkipMenu",0);
+                StartGame();
+                return;
+            }
         }
+       
         
-        var toggleState = gameState == GameState.Start;
+        var toggleState = gameState == GameState.Start || gameState == GameState.Pause;
         _mainMenuController.ToggleUI(toggleState);
     }
 

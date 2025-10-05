@@ -20,11 +20,13 @@
             _chunkManager = chunkManager;
             _gameStateService = gameStateService;
             _worldPreset = worldPreset;
+            
+            _gameStateService.OnGameStateChanged += GameStateHandler;
         }
 
         public void Initialize()
         {
-            _gameStateService.OnGameStateChanged += GameStateHandler;
+           
         }
 
         public void Dispose()

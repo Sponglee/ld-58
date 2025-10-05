@@ -1,4 +1,6 @@
 using System;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 using Zenject;
 
 public class GameUIProvider: IInitializable, IDisposable
@@ -36,7 +38,8 @@ public class GameUIProvider: IInitializable, IDisposable
     
     private void PauseGame()
     {
-        _gameStateService.ChangeState(GameState.Pause);
+        PlayerPrefs.SetInt("SkipMenu",0);
+        SceneManager.LoadScene("Main");
     }
     
     private void DayComplete()

@@ -9,14 +9,16 @@ public class ShopUIProvider: IInitializable, IDisposable
     private GameStateService _gameStateService;
     private ShopController _shopController;
     private UpgradesManager _upgradesManager;
+    private MoneyManager _moneyManager;
 
     
     public ShopUIProvider(
         GameStateService gameStateService,
         ShopView shopView,
-        UpgradesManager upgradesManager)
+        UpgradesManager upgradesManager,
+        MoneyManager moneyManager)
     {
- 
+        _moneyManager = moneyManager;
         _gameStateService = gameStateService;
         _upgradesManager = upgradesManager;
 
@@ -30,12 +32,17 @@ public class ShopUIProvider: IInitializable, IDisposable
     public void Initialize()
     {
     
+        _shopController.Initialize();
         
         _shopController.ToggleUI(true);
+
+        var upgradeData = _upgradesManager.GetUpgradeDataByType(UpgradeType.Capacity);
+        _shopController.UpgradeVisuals(upgradeData);
+
         
         _gameStateService.OnGameStateChanged += StateChangeHandler;
         _shopController.OnGameStartInput += StartGame;
-        
+        _shopController.OnUpgradeInput += UpgradeHandler;
         
         StateChangeHandler(_gameStateService.GameState);
     }
@@ -44,7 +51,22 @@ public class ShopUIProvider: IInitializable, IDisposable
     {
         _gameStateService.OnGameStateChanged -= StateChangeHandler;
         _shopController.OnGameStartInput -= StartGame;
+        _shopController.OnUpgradeInput += UpgradeHandler;
     }
+
+    private void UpgradeHandler(UpgradeType obj)
+    {
+        var upgradeData = _upgradesManager.GetUpgradeDataByType(obj);
+        var isSpent = _moneyManager.SpendMoney(upgradeData.UpgradeCost);
+        if (!isSpent)
+        {
+            return;
+        }
+        
+        _upgradesManager.UpgradeItem(obj);
+        _shopController.UpgradeVisual(upgradeData);
+    }
+
 
     private void StartGame()
     {

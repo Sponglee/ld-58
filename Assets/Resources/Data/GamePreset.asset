@@ -14,11 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GamePreset
   LevelMoveSpeed: 10
   RunnerMoveSpeed: 1000
+  InventoryDimentions:
+  - {x: 3, y: 3}
+  - {x: 4, y: 3}
+  - {x: 4, y: 4}
+  - {x: 5, y: 5}
+  - {x: 6, y: 6}
   InventoryCapacity: 25
   InventorySlotPrefab: {fileID: 3028420687765336440, guid: 8d39c690ef32642acbd694bb43f44df4, type: 3}
   HandRotateDuration: 0.3
   HandRotateEase: 9
   HandPrefab: {fileID: 3376822889091712634, guid: 956e73cd311d041bf81e200a3c815306, type: 3}
+  CollectionItemPrefab: {fileID: 9140105265710462538, guid: d663a80b954514799895747d39ec1283, type: 3}
   ArtifactList:
   - inventoryData:
       type: 0
@@ -51,4 +58,3 @@ MonoBehaviour:
       inventoryIcon: {fileID: 21300000, guid: a4c16b25e0f9a409abe2d77e88ef9656, type: 3}
     artifactPrefab: {fileID: 1570040935687510679, guid: 38177203054da4334b35b826c8068934, type: 3}
   ArtifactPickupSpeed: 0.5
-  InventoryDimentions: {x: 5, y: 5}

@@ -2,6 +2,7 @@
 using System;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 public class GameUIController: IInitializable, IDisposable
@@ -33,6 +34,11 @@ public class GameUIController: IInitializable, IDisposable
     public Transform GetInventoryParent()
     {
         return _view.GetInventoryParent();
+    }
+    
+    public GridLayoutGroup GetGridLayout()
+    {
+        return _view.GetGridLayout();
     }
     
     public Transform GetHandParent()
