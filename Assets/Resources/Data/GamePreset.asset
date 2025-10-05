@@ -27,7 +27,7 @@ MonoBehaviour:
         010
 
         000'
-      ScoreValue: 1
+      MoneyValue: 10
       inventoryIcon: {fileID: 21300000, guid: 066f9794a86ae488a803fe7d2e44843b, type: 3}
     artifactPrefab: {fileID: 3156149740539133086, guid: 1a6755e532ade4b8ca43b64c1b5182d9, type: 3}
   - inventoryData:
@@ -37,7 +37,7 @@ MonoBehaviour:
         010
 
         010'
-      ScoreValue: 2
+      MoneyValue: 25
       inventoryIcon: {fileID: 21300000, guid: f7c5f45b9c0eb46aeb6d96d4a2621c3c, type: 3}
     artifactPrefab: {fileID: 2809357968001399673, guid: ac45ca934296d4dddad9cafa2e5c1d1c, type: 3}
   - inventoryData:
@@ -47,7 +47,7 @@ MonoBehaviour:
         111
 
         010'
-      ScoreValue: 3
+      MoneyValue: 30
       inventoryIcon: {fileID: 21300000, guid: a4c16b25e0f9a409abe2d77e88ef9656, type: 3}
     artifactPrefab: {fileID: 1570040935687510679, guid: 38177203054da4334b35b826c8068934, type: 3}
   ArtifactPickupSpeed: 0.5

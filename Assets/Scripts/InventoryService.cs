@@ -2,14 +2,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class InventoryService
 {
+    public event Action<InventoryItemData> OnItemStored;
     public event Action<InventorySlotController> OnCellClicked;
 
     private LinkedList<InventoryItem> _inventoryItems = new LinkedList<InventoryItem>();
     private List<InventorySlotController> _slots = new List<InventorySlotController>();
 
+    public void ItemStored(InventoryItemData artifactData)
+    {
+       OnItemStored?.Invoke(artifactData);
+    }
+    
     public void RemoveFromInventory(InventoryItem item)
     {
         _inventoryItems.Remove(item);
@@ -102,6 +109,8 @@ public class InventoryService
 
         return null;
     }
+
+  
 }
 
 public class InventorySlotController : IDisposable
@@ -181,7 +190,7 @@ public class InventoryItemData
 {
     public InventoryItemType type;
     [TextArea(3, 3)] public string shape;
-    public float ScoreValue;
+    public int MoneyValue;
     public Sprite inventoryIcon;
     
     public string RotateShape(string shape)

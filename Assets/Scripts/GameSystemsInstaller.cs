@@ -32,5 +32,9 @@ public class GameSystemsInstaller : MonoInstaller
   
         Container.BindInterfacesAndSelfTo<HandService>().AsSingle().NonLazy();
         Container.Bind<HandFactory>().AsSingle();
+        
+        // Container.Bind<MoneyModel>().AsSingle();
+        Container.BindInterfacesAndSelfTo<MoneyManager>().AsSingle();
+        // Container.BindInterfacesAndSelfTo<MoneyController>().AsSingle();
     }
 }

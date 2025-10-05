@@ -70,6 +70,7 @@
                 
                 _handService.StoreHand(hand, obj);
                 _handService.DiscardHand();
+                _inventoryService.ItemStored(artifactData);
             }
         }
 

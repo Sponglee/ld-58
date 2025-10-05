@@ -7,7 +7,7 @@ using Zenject;
 public class InputSystemInstaller : MonoInstaller<InputSystemInstaller>
 {
     [SerializeField] private InputActionAsset _inputAsset;
-    [FormerlySerializedAs("_runner")] [SerializeField] private RunnerView _runnerView;
+    [SerializeField] private RunnerView _runnerView;
     
     public override void InstallBindings()
     {
