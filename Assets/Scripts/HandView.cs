@@ -50,16 +50,25 @@ public class HandView : MonoBehaviour
             var line = lines[y].Trim();
             for (var x = 0; x < line.Length; x++)
             {
-                var toggle = line[x] == '1';
-                handCells[index].ToggleCell(toggle);
+                var toggle = line[x] != '0';
+                var cell = handCells[index];
+                if (toggle)
+                {
+                    var image = data.cellList[int.Parse(line[x].ToString())-1];
+                    cell.SetImage(image);
+                }
+                    
+                cell.ToggleCell(toggle);
+                  
                 index++;
             }
         }
 
-        foreach (var cell in handCells)
-        {
-            cell.SetImage(data.inventoryIcon);
-        }
+        // foreach (var cell in handCells)
+        // {
+        //     
+        //     cell.SetImage(data.inventoryIcon);
+        // }
     }
 
     public void RotateAround(bool isClockwise)

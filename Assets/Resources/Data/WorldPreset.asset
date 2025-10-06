@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WorldPreset
   TileSize: 40
   TileList:
-  - {fileID: 1954414342721818455, guid: 2d94176f1b0604837b6961c9ffa088ba, type: 3}
+  - {fileID: 6212696615248613299, guid: df8099557884944e0ab169bb551f6f12, type: 3}
+  - {fileID: 3783442181795141744, guid: c86710e0f22a04e918229b0a12bdaf88, type: 3}
   MapSize: 5
   ArtifactSpawnProbability: 100
   JumpTreshold: -40

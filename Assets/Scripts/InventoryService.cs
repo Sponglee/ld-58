@@ -41,7 +41,7 @@ public class InventoryService
             for (var x = 0; x < lineLength; x++)
             {
                 var checkCoord = new Vector2(x + slotCoord.x - 1, y + slotCoord.y - 1);
-                var isHandShape = lines[y][x] == '1';
+                var isHandShape = lines[y][x] != '0';
                 
                 if (isHandShape)
                 {
@@ -155,7 +155,7 @@ public class InventorySlotController : IDisposable
     public void FillSlot(InventoryItemData data)
     {
         _model.SetEmpty(false);
-        _view.SetImage(data.inventoryIcon);
+        _view.SetImage(data.slotIcon);
     }
 
     private void SlotButtonClickHandler()
@@ -192,7 +192,9 @@ public class InventoryItemData
     [TextArea(3, 3)] public string shape;
     public int MoneyValue;
     public Sprite inventoryIcon;
-    
+    public List<Sprite> cellList;
+    public Sprite slotIcon;
+
     public string RotateShape(string shape)
     {
         var rows = shape.Trim().Split('\n').Select(r => r.ToCharArray()).ToArray();
@@ -236,6 +238,9 @@ public class InventoryItem
 public enum InventoryItemType
 {
     Ball,
-    Vaze,
-    Staff
+    Staff,
+    Ring,
+    Crown,
+    Compas,
+    Horn
 }

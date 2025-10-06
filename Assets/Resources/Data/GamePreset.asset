@@ -36,25 +36,85 @@ MonoBehaviour:
         000'
       MoneyValue: 10
       inventoryIcon: {fileID: 21300000, guid: 8170a4bc81f594fdaa513be7097a4028, type: 3}
-    artifactPrefab: {fileID: 3156149740539133086, guid: 1a6755e532ade4b8ca43b64c1b5182d9, type: 3}
-  - inventoryData:
-      type: 2
-      shape: '010
-
-        010
-
-        010'
-      MoneyValue: 25
-      inventoryIcon: {fileID: 21300000, guid: 3f176102087374d96ad1d56b9f47c63c, type: 3}
-    artifactPrefab: {fileID: 2809357968001399673, guid: ac45ca934296d4dddad9cafa2e5c1d1c, type: 3}
+      cellList:
+      - {fileID: 21300000, guid: 8170a4bc81f594fdaa513be7097a4028, type: 3}
+      slotIcon: {fileID: 21300000, guid: 066f9794a86ae488a803fe7d2e44843b, type: 3}
+    artifactPrefab: {fileID: 6577055079554432002, guid: 82979e984b1954987888b4dac774f26f, type: 3}
   - inventoryData:
       type: 1
+      shape: '010
+
+        020
+
+        030'
+      MoneyValue: 25
+      inventoryIcon: {fileID: 21300000, guid: 3f176102087374d96ad1d56b9f47c63c, type: 3}
+      cellList:
+      - {fileID: 21300000, guid: f9cda193955c84738bb69d9812b02429, type: 3}
+      - {fileID: 21300000, guid: 018c1102e81ed4378a6ed126f5441beb, type: 3}
+      - {fileID: 21300000, guid: cc59669cef8c449ef956e789f285dfe8, type: 3}
+      slotIcon: {fileID: 21300000, guid: a4c16b25e0f9a409abe2d77e88ef9656, type: 3}
+    artifactPrefab: {fileID: 2809357968001399673, guid: ac45ca934296d4dddad9cafa2e5c1d1c, type: 3}
+  - inventoryData:
+      type: 2
       shape: '000
 
-        001
+        012
 
-        011'
+        000'
+      MoneyValue: 30
+      inventoryIcon: {fileID: 21300000, guid: 4719f447d2a3a48d9bce51f5b345c8ef, type: 3}
+      cellList:
+      - {fileID: 21300000, guid: 66a299b34d24e45d2b6bad2f9ea5f6da, type: 3}
+      - {fileID: 21300000, guid: 4657a2b7f9e8c437ab532aa529d1205e, type: 3}
+      slotIcon: {fileID: 21300000, guid: f7c5f45b9c0eb46aeb6d96d4a2621c3c, type: 3}
+    artifactPrefab: {fileID: 1570040935687510679, guid: 38177203054da4334b35b826c8068934, type: 3}
+  - inventoryData:
+      type: 3
+      shape: '000
+
+        120
+
+        340'
+      MoneyValue: 30
+      inventoryIcon: {fileID: 21300000, guid: 07612c5d5b7b3437081e3d9c091af07e, type: 3}
+      cellList:
+      - {fileID: 21300000, guid: 0be22de7ff8e149c6bdf9949b4665183, type: 3}
+      - {fileID: 21300000, guid: f5a1c349a89064b119e8bcf514b19e74, type: 3}
+      - {fileID: 21300000, guid: a8dfb02999c68406681fd7dde3284a08, type: 3}
+      - {fileID: 21300000, guid: 3f9d839e9663f4b0b97f286a0a956909, type: 3}
+      slotIcon: {fileID: 21300000, guid: a4c16b25e0f9a409abe2d77e88ef9656, type: 3}
+    artifactPrefab: {fileID: 2809357968001399673, guid: 226c4d864213b4f60a60c35b9d18c833, type: 3}
+  - inventoryData:
+      type: 4
+      shape: '010
+
+        230
+
+        000'
       MoneyValue: 30
       inventoryIcon: {fileID: 21300000, guid: d4afc965dde034358a4ea82ad4ac33b2, type: 3}
-    artifactPrefab: {fileID: 1570040935687510679, guid: 38177203054da4334b35b826c8068934, type: 3}
+      cellList:
+      - {fileID: 21300000, guid: 3b4ba4f54ce7647858f3094900b89999, type: 3}
+      - {fileID: 21300000, guid: e6749b020864142ce9bdc2523504ee03, type: 3}
+      - {fileID: 21300000, guid: 5b41b86c8ff614d22b736296fc35826f, type: 3}
+      slotIcon: {fileID: 21300000, guid: f7c5f45b9c0eb46aeb6d96d4a2621c3c, type: 3}
+    artifactPrefab: {fileID: 2809357968001399673, guid: 0248b25a6ede44121b06a7fca32c35ef, type: 3}
+  - inventoryData:
+      type: 5
+      shape: '100
+
+        240
+
+        350'
+      MoneyValue: 30
+      inventoryIcon: {fileID: 21300000, guid: d27f8ff3bad9045bebfd08a34cab8d87, type: 3}
+      cellList:
+      - {fileID: 21300000, guid: 1bffb3c626d514412adf07ebed765bbb, type: 3}
+      - {fileID: 21300000, guid: 900395c368bfb4e43a9fc5fa3907128a, type: 3}
+      - {fileID: 21300000, guid: 1d61cd73cf5c5435c9ebdcf58b1bafa1, type: 3}
+      - {fileID: 21300000, guid: 9679165d1c2b34c9f82fbbd141d3db3e, type: 3}
+      - {fileID: 21300000, guid: 2dd8d314071b64fc49ae718e407f4dee, type: 3}
+      slotIcon: {fileID: 21300000, guid: 066f9794a86ae488a803fe7d2e44843b, type: 3}
+    artifactPrefab: {fileID: 2809357968001399673, guid: 197c5a2fbc64542dd9ec590d92bb29cb, type: 3}
   ArtifactPickupSpeed: 0.5
