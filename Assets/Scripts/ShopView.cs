@@ -27,7 +27,7 @@ public class ShopView : UIViewBase
     public void UpdateUpgrade(UpgradeData data)
     {
         var upgradeLevel = data.UpgradeLevel;
-        var upgradePrice = data.UpgradeCost;
+        var upgradePrice = data.CalculatedCost;
         
         _upgradeItem.UpdateVisual(upgradePrice, upgradeLevel);
     }

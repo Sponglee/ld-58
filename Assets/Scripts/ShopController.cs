@@ -40,12 +40,7 @@ public class ShopController: IDisposable
     {
         OnGameStartInput?.Invoke();
     }
-
-    public void UpgradeVisuals(UpgradeData data)
-    {
-        _view.UpdateUpgrade(data);
-    }
-
+    
     public void UpgradeVisual(UpgradeData data)
     {
         _view.UpdateUpgrade(data);

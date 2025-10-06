@@ -18,4 +18,4 @@ MonoBehaviour:
   - {fileID: 3783442181795141744, guid: c86710e0f22a04e918229b0a12bdaf88, type: 3}
   MapSize: 5
   ArtifactSpawnProbability: 100
-  JumpTreshold: -40
+  JumpTreshold: -50

@@ -60,6 +60,7 @@
         public int UpgradeCost;
         public int UpgradeLevel;
         public string UpgradeKey;
+        public int CalculatedCost;
 
         public UpgradeData()
         {

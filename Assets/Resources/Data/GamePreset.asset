@@ -67,7 +67,7 @@ MonoBehaviour:
       cellList:
       - {fileID: 21300000, guid: 66a299b34d24e45d2b6bad2f9ea5f6da, type: 3}
       - {fileID: 21300000, guid: 4657a2b7f9e8c437ab532aa529d1205e, type: 3}
-      slotIcon: {fileID: 21300000, guid: f7c5f45b9c0eb46aeb6d96d4a2621c3c, type: 3}
+      slotIcon: {fileID: 21300000, guid: 5569613aa7824401a8e2ef7ce04fb45e, type: 3}
     artifactPrefab: {fileID: 1570040935687510679, guid: 38177203054da4334b35b826c8068934, type: 3}
   - inventoryData:
       type: 3
@@ -98,7 +98,7 @@ MonoBehaviour:
       - {fileID: 21300000, guid: 3b4ba4f54ce7647858f3094900b89999, type: 3}
       - {fileID: 21300000, guid: e6749b020864142ce9bdc2523504ee03, type: 3}
       - {fileID: 21300000, guid: 5b41b86c8ff614d22b736296fc35826f, type: 3}
-      slotIcon: {fileID: 21300000, guid: f7c5f45b9c0eb46aeb6d96d4a2621c3c, type: 3}
+      slotIcon: {fileID: 21300000, guid: 131b1e496d13942488f1fa1d3b6bdc4c, type: 3}
     artifactPrefab: {fileID: 2809357968001399673, guid: 0248b25a6ede44121b06a7fca32c35ef, type: 3}
   - inventoryData:
       type: 5
@@ -115,6 +115,6 @@ MonoBehaviour:
       - {fileID: 21300000, guid: 1d61cd73cf5c5435c9ebdcf58b1bafa1, type: 3}
       - {fileID: 21300000, guid: 9679165d1c2b34c9f82fbbd141d3db3e, type: 3}
       - {fileID: 21300000, guid: 2dd8d314071b64fc49ae718e407f4dee, type: 3}
-      slotIcon: {fileID: 21300000, guid: 066f9794a86ae488a803fe7d2e44843b, type: 3}
+      slotIcon: {fileID: 21300000, guid: 0a80571b7681c484391a4986c972ac63, type: 3}
     artifactPrefab: {fileID: 2809357968001399673, guid: 197c5a2fbc64542dd9ec590d92bb29cb, type: 3}
   ArtifactPickupSpeed: 0.5

@@ -37,7 +37,10 @@ public class ShopUIProvider: IInitializable, IDisposable
         _shopController.ToggleUI(true);
 
         var upgradeData = _upgradesManager.GetUpgradeDataByType(UpgradeType.Capacity);
-        _shopController.UpgradeVisuals(upgradeData);
+        var resultCost = GetResultCost(upgradeData);
+        upgradeData.CalculatedCost = resultCost;
+        
+        _shopController.UpgradeVisual(upgradeData);
 
         
         _gameStateService.OnGameStateChanged += StateChangeHandler;
@@ -57,14 +60,29 @@ public class ShopUIProvider: IInitializable, IDisposable
     private void UpgradeHandler(UpgradeType obj)
     {
         var upgradeData = _upgradesManager.GetUpgradeDataByType(obj);
-        var isSpent = _moneyManager.SpendMoney(upgradeData.UpgradeCost);
+     
+        var resultCost = GetResultCost(upgradeData);
+        upgradeData.CalculatedCost = resultCost;
+        
+        var isSpent = _moneyManager.SpendMoney(resultCost);
         if (!isSpent)
         {
             return;
         }
         
         _upgradesManager.UpgradeItem(obj);
+        
+        resultCost = GetResultCost(upgradeData);
+        upgradeData.CalculatedCost = resultCost;
+        
         _shopController.UpgradeVisual(upgradeData);
+    }
+
+    private int GetResultCost(UpgradeData upgradeData)
+    {
+        var upgradeCost = upgradeData.UpgradeCost * (1 + Math.Log(upgradeData.UpgradeLevel + 1));
+        var resultCost = (int)(Math.Ceiling(upgradeCost / 100) * 100);
+        return resultCost;
     }
 
 
