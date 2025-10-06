@@ -8,6 +8,7 @@ public class GamePreset : ScriptableObject
 {
     public float LevelMoveSpeed = 10f;
     public float RunnerMoveSpeed = 10f;
+    public float RunnerStopTime = 2f;
     [Header("--------Inventory----------")]
     public Vector2Int[] InventoryDimentions;
     public int InventoryCapacity = 5;

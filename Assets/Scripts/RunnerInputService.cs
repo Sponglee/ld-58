@@ -6,7 +6,7 @@ using Zenject;
 public class RunnerInputService : IInitializable, ITickable, IDisposable
     {
         public event Action<Vector2> OnRunnerMove;
-        
+        public event Action<Vector2> OnRunnerStay; 
         public Vector2 RunnerMoveInput { get; private set; }
         
         private InputAction _moveAction;
@@ -33,7 +33,10 @@ public class RunnerInputService : IInitializable, ITickable, IDisposable
             if (_isPlayerMoving)
             {
                 OnRunnerMove?.Invoke(RunnerMoveInput);
+                return;
             }
+            
+            OnRunnerStay?.Invoke(RunnerMoveInput);
         }
         
         public void Dispose()

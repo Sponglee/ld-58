@@ -14,12 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GamePreset
   LevelMoveSpeed: 10
   RunnerMoveSpeed: 1000
+  RunnerStopTime: 2
   InventoryDimentions:
   - {x: 3, y: 3}
   - {x: 4, y: 3}
   - {x: 4, y: 4}
+  - {x: 4, y: 5}
   - {x: 5, y: 5}
+  - {x: 5, y: 6}
   - {x: 6, y: 6}
+  - {x: 6, y: 7}
+  - {x: 7, y: 7}
   InventoryCapacity: 25
   InventorySlotPrefab: {fileID: 3028420687765336440, guid: 8d39c690ef32642acbd694bb43f44df4, type: 3}
   HandRotateDuration: 0.3

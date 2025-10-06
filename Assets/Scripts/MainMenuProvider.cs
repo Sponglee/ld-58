@@ -18,15 +18,17 @@ public class MainMenuProvider: IInitializable, IDisposable
     {
         _gameStateService.OnGameStateChanged += StateChangeHandler;
         _mainMenuController.OnGameStartInput += StartGame;
-        
+        _mainMenuController.OnCreditsInput += QuitGame;
+
         StateChangeHandler(_gameStateService.GameState);
 
     }
-    
+
     public void Dispose()
     {
         _gameStateService.OnGameStateChanged -= StateChangeHandler;
         _mainMenuController.OnGameStartInput -= StartGame;
+        _mainMenuController.OnCreditsInput -= QuitGame;
 
 
     }
@@ -36,9 +38,9 @@ public class MainMenuProvider: IInitializable, IDisposable
         _gameStateService.ChangeState(GameState.Play);
     }
 
-    private void ExitGame()
+    private void QuitGame()
     {
-        
+        Application.Quit();
     }
 
     private void StateChangeHandler(GameState gameState)

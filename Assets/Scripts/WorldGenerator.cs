@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using Zenject;
+using Random = UnityEngine.Random;
 
 public class WorldGenerator : IInitializable
 {
@@ -51,10 +53,23 @@ public class WorldGenerator : IInitializable
         var chunkObjectHolder = chunk.ObjectHolder;
         
         var artifact = _artifactFactory.Create(artifactPrefab, spawnPoint.position);
+
+        RemoveSpawnedArtifact(chunkObjectHolder);
+        
         artifact.GetTransform().SetParent(chunkObjectHolder);
         _artifactManager.AddArtifact(inventoryItemData, artifact);
     }
-    
+
+    private void RemoveSpawnedArtifact(Transform chunkObjectHolder)
+    {
+        for (int i = chunkObjectHolder.childCount-1; i >= 0; i--)
+        {
+            var artifactToDestroy = chunkObjectHolder.GetChild(i);
+            
+            GameObject.Destroy(artifactToDestroy.gameObject);
+        }
+    }
+
     public void GenerateLevel()
     {
         var levelSize = _worldPreset.MapSize;
